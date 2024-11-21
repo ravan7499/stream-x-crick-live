@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>STREAM X CRICK_LIVE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orion+Esperanto+Dika&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Copperplate&display=swap" rel="stylesheet">
+  <style>
+    html {
+      font-family: 'Orion Esperanto Dika', sans-serif;
+      background: #000;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      color: #DAA520;
+    }
+    #telegram-banner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: black;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      text-align: center;
+      width: 250px;
+    }
+    #player {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      margin-top: 80px;
+      border: 5px solid #FFFF00; /* Fixed border color */
+      border-radius: 10px;
+      box-shadow: 0 0 20px 5px rgba(255, 255, 0, 0.7);
+    }
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loading-text {
+      text-align: center;
+      font-size: 24px;
+    }
+    #telegram-banner h2 {
+      color: white;
+      margin: 0 0 10px;
+      font-family: 'Copperplate', sans-serif;
+      text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00;
+      animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00;
+      }
+      100% {
+        text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+      }
+    }
+    #telegram-banner button {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      width: 100px;
+    }
+    #telegram-banner .cancel-button {
+      background-color: red;
+    }
+    marquee {
+      background-color: darkgoldenrod;
+      color: black;
+      width: 100%;
+      padding: 10px 0;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+  </style>
+  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
+</head>
+<body>
+  <div id="loading" class="loading">
+    <div class="loading-text">Loading STREAM X CRICK...</div>
+  </div>
+  <div id="telegram-banner">
+    <h2>Join STREAM X CRICK Telegram Channel</h2>
+    <button onclick="window.open('https://t.me/streamxcrick', '_blank')">Join</button>
+    <button class="cancel-button" onclick="document.getElementById('telegram-banner').style.display='none'">Cancel</button>
+  </div>
+
+  <div id="player"></div>
+
+  <marquee behavior="scroll" direction="left">
+    "JOIN STREAM X CRICK LIVE LINKS TELEGRAM CHANNEL FOR ALL SPORTS LIVE LINKS"🔗❤️
+  </marquee>
+
+  <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var maxvalue = urlParams.get("videoUrl");
+
+    var playerInstance = jwplayer("player").setup({
+      file: maxvalue || 'https://example.com/path/to/default/video.m3u8',
+      width: "100%",
+      height: "auto",
+      primary: "html5",
+      sources: [
+        { file: maxvalue, label: "360p", type: "application/x-mpegURL" },
+        { file: maxvalue, label: "480p", type: "application/x-mpegURL" },
+        { file: maxvalue, label: "720p", type: "application/x-mpegURL" },
+        { file: maxvalue, label: "1080p", type: "application/x-mpegURL" },
+      ],
+      aspectratio: "16:9",
+      controls: true,
+      autostart: false,
+      stretching: "uniform",
+    });
+    playerInstance.on('ready', function() {
+      document.getElementById('loading').style.display = 'none';
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('telegram-banner').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
